@@ -12,7 +12,7 @@ import com.raphaelrighetti.websocket.dto.Message;
 public class GreetingController {
 	
 	@MessageMapping("/hello")
-	@SendTo("/topic/greetings")
+	@SendTo("/chat/greetings")
 	public Greeting greeting(Message message) throws Exception {
 	    Thread.sleep(1000); // simulated delay
 	    return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.name()) + "!");

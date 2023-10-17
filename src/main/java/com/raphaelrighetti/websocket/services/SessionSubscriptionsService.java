@@ -1,34 +1,26 @@
 package com.raphaelrighetti.websocket.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
+
+import com.raphaelrighetti.websocket.models.SessionSubscriptions;
 
 @Service
 public class SessionSubscriptionsService {
 	
-	private ConcurrentHashMap<String, List<String>> sessionSubscriptions = new ConcurrentHashMap<>();
+	private SessionSubscriptions sessionSubscriptions = new SessionSubscriptions();
 	
-	public void add(String sessionId, String topic) {
-		if (getSubscriptions(sessionId).isEmpty()) {
-			sessionSubscriptions.put(sessionId, List.of(topic));
-		} else {
-			getSubscriptions(sessionId).add(topic);
-		}
+	public void add(String sessionId, String chat) {
+		sessionSubscriptions.add(sessionId, chat);
     }
 	
 	public List<String> remove(String sessionId) {
-		if (!getSubscriptions(sessionId).isEmpty()) {
-			return sessionSubscriptions.remove(sessionId);
-		} else {
-			return new ArrayList<>();
-		}
+		return sessionSubscriptions.remove(sessionId);
     }
 
     public List<String> getSubscriptions(String sessionId) {
-        return sessionSubscriptions.getOrDefault(sessionId, new ArrayList<>());
+        return sessionSubscriptions.getSubscriptions(sessionId);
     }
 
 }

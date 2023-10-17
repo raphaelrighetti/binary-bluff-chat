@@ -11,13 +11,13 @@ import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.stereotype.Component;
 
 import com.raphaelrighetti.websocket.services.SessionSubscriptionsService;
-import com.raphaelrighetti.websocket.services.TopicSubscriptionCounterService;
+import com.raphaelrighetti.websocket.services.ChatSubscriptionCounterService;
 
 @Component
 public class MessageInterceptor implements ChannelInterceptor {
 	
 	@Autowired
-	private TopicSubscriptionCounterService topicSubscriptionCounterService;
+	private ChatSubscriptionCounterService topicSubscriptionCounterService;
 	
 	@Autowired
 	private SessionSubscriptionsService sessionSubscriptionsService;
@@ -27,11 +27,20 @@ public class MessageInterceptor implements ChannelInterceptor {
 		StompHeaderAccessor accessor = StompHeaderAccessor.wrap(message);
 		StompCommand command = accessor.getCommand();
 		
+		handleSubscribe(accessor, command);
+		handleDisconnect(accessor, command);
+		
+		return message;
+	}
+	
+	private void handleSubscribe(StompHeaderAccessor accessor, StompCommand command) {
 		if (command.name().equals(StompCommand.SUBSCRIBE.name())) {
 			sessionSubscriptionsService.add(accessor.getSessionId(), accessor.getDestination());
 			topicSubscriptionCounterService.increment(accessor.getDestination());
 		}
-		
+	}
+	
+	private void handleDisconnect(StompHeaderAccessor accessor, StompCommand command) {
 		if (command.name().equals(StompCommand.DISCONNECT.name())) {
 			List<String> topics = sessionSubscriptionsService.remove(accessor.getSessionId());
 			
@@ -39,8 +48,6 @@ public class MessageInterceptor implements ChannelInterceptor {
 	        	topicSubscriptionCounterService.decrement(topic);
 	        });
 		}
-		
-		return message;
 	}
 	
 }
