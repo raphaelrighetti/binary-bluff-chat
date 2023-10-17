@@ -5,7 +5,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
-import com.raphaelrighetti.websocket.dto.Greeting;
 import com.raphaelrighetti.websocket.dto.Message;
 
 @Controller
@@ -13,9 +12,8 @@ public class GreetingController {
 	
 	@MessageMapping("/hello")
 	@SendTo("/chat/greetings")
-	public Greeting greeting(Message message) throws Exception {
-	    Thread.sleep(1000); // simulated delay
-	    return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.name()) + "!");
-	  }
+	public Message greeting(Message message) throws Exception {
+		return new Message(HtmlUtils.htmlEscape(message.content()));
+	}
 
 }
