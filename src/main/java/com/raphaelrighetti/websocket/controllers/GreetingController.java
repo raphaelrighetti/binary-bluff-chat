@@ -5,7 +5,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
-import com.raphaelrighetti.websocket.dto.Message;
+import com.raphaelrighetti.websocket.models.records.Message;
 
 @Controller
 public class GreetingController {

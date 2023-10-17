@@ -13,6 +13,7 @@ import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.stereotype.Component;
 
 import com.raphaelrighetti.websocket.services.SessionSubscriptionsService;
+import com.raphaelrighetti.websocket.models.records.AvailableChat;
 import com.raphaelrighetti.websocket.services.ChatSubscriptionCounterService;
 
 @Component
@@ -48,7 +49,16 @@ public class MessageInterceptor implements ChannelInterceptor {
 				
 				accessor.setDestination(accessor.getDestination() + "/" + accessor.getSessionId() + "/bot");
 			} else {
-				accessor.setDestination(accessor.getDestination() + "/" + UUID.randomUUID() + "/a");
+				List<AvailableChat> availableChats = chatSubscriptionCounterService.getAvailableChats();
+				
+				if (!availableChats.isEmpty()) {
+					AvailableChat chat = availableChats.get(0);
+					String destination = chat.url().replace("/a", "/b");
+					
+					accessor.setDestination(destination);
+				} else {
+					accessor.setDestination(accessor.getDestination() + "/" + UUID.randomUUID() + "/a");
+				}
 			}
 			
 			System.out.println(accessor.getDestination());

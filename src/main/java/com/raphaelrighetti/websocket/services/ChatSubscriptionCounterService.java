@@ -1,8 +1,11 @@
 package com.raphaelrighetti.websocket.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.raphaelrighetti.websocket.models.ChatSubscriptionCounter;
+import com.raphaelrighetti.websocket.models.records.AvailableChat;
 
 @Service
 public class ChatSubscriptionCounterService {
@@ -19,6 +22,10 @@ public class ChatSubscriptionCounterService {
 
     public int getCount(String chat) {
         return chatSubscriptionCounter.getCount(chat);
+    }
+    
+    public List<AvailableChat> getAvailableChats() {
+    	return chatSubscriptionCounter.getAvailableChats();
     }
 
 }
