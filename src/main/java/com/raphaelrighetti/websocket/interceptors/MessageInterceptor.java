@@ -53,7 +53,7 @@ public class MessageInterceptor implements ChannelInterceptor {
 				
 				if (!availableChats.isEmpty()) {
 					AvailableChat chat = availableChats.get(0);
-					String destination = chat.url().replace("/a", "/b");
+					String destination = chat.url() + "/b";
 					
 					accessor.setDestination(destination);
 				} else {
@@ -70,6 +70,8 @@ public class MessageInterceptor implements ChannelInterceptor {
 	
 	private void handleDisconnect(StompHeaderAccessor accessor, StompCommand command) {
 		if (command.name().equals(StompCommand.DISCONNECT.name())) {
+			System.out.println("Vai desconectar!");
+			
 			List<String> chats = sessionSubscriptionsService.remove(accessor.getSessionId());
 			
 			chats.forEach(chat -> {

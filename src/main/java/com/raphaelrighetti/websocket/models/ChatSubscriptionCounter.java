@@ -13,19 +13,29 @@ public class ChatSubscriptionCounter {
 	private ConcurrentHashMap<String, Integer> chatCounts = new ConcurrentHashMap<>();
 	
 	public void increment(String chat) {
-        chatCounts.put(chat, chatCounts.getOrDefault(chat, 0) + 1);
+		String chatRoot = getChatRoot(chat);
+		
+        chatCounts.put(chatRoot, chatCounts.getOrDefault(chatRoot, 0) + 1);
     }
 	
 	public void decrement(String chat) {
-		chatCounts.put(chat, chatCounts.getOrDefault(chat, 0) - 1);
+		String chatRoot = getChatRoot(chat);
 		
-		if (chatCounts.getOrDefault(chat, 0) <= 0) {
-			chatCounts.remove(chat);
+		chatCounts.put(chatRoot, chatCounts.getOrDefault(chatRoot, 0) - 1);
+		
+		if (chatCounts.getOrDefault(chatRoot, 0) <= 0) {
+			chatCounts.remove(chatRoot);
 		}
     }
+	
+	private String getChatRoot(String chat) {
+		return chat.replaceAll("(/a|/b)$", "");
+	}
 
     public int getCount(String chat) {
-        return chatCounts.getOrDefault(chat, 0);
+    	String chatRoot = getChatRoot(chat);
+    	
+        return chatCounts.getOrDefault(chatRoot, 0);
     }
     
     public List<AvailableChat> getAvailableChats() {
