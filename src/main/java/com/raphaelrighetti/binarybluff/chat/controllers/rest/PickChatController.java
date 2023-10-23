@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.raphaelrighetti.binarybluff.chat.models.records.ChosenChat;
+import com.raphaelrighetti.binarybluff.chat.dto.ChosenChatDTO;
 import com.raphaelrighetti.binarybluff.chat.services.PickChatService;
 
 @RestController
@@ -17,7 +17,7 @@ public class PickChatController {
 	private PickChatService service;
 	
 	@GetMapping
-	public ResponseEntity<ChosenChat> pickAvailableChat() {
+	public ResponseEntity<ChosenChatDTO> pickAvailableChat() {
 		return ResponseEntity.ok(service.pickChat());
 	}
 	

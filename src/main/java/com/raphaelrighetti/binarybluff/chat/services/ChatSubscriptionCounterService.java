@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.raphaelrighetti.binarybluff.chat.dto.AvailableChatDTO;
 import com.raphaelrighetti.binarybluff.chat.models.ChatSubscriptionCounter;
-import com.raphaelrighetti.binarybluff.chat.models.records.AvailableChat;
 
 @Service
 public class ChatSubscriptionCounterService {
@@ -24,7 +24,7 @@ public class ChatSubscriptionCounterService {
         return chatSubscriptionCounter.getCount(chat);
     }
     
-    public List<AvailableChat> getAvailableChats() {
+    public List<AvailableChatDTO> getAvailableChats() {
     	return chatSubscriptionCounter.getAvailableChats();
     }
 

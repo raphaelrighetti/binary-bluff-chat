@@ -7,8 +7,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.raphaelrighetti.binarybluff.chat.models.records.AvailableChat;
-import com.raphaelrighetti.binarybluff.chat.models.records.ChosenChat;
+import com.raphaelrighetti.binarybluff.chat.dto.AvailableChatDTO;
+import com.raphaelrighetti.binarybluff.chat.dto.ChosenChatDTO;
 
 @Service
 public class PickChatService {
@@ -19,22 +19,22 @@ public class PickChatService {
 	private Random random = new Random();
 	private int randomIntRange = 1;
 	
-	public ChosenChat pickChat() {
+	public ChosenChatDTO pickChat() {
 		boolean chatWithBot = random.nextInt(randomIntRange) > 0;
 		String chatUrlTemplate = "/chat/" + UUID.randomUUID();
 		
 		if (!chatWithBot) {
-			List<AvailableChat> availableChats = chatSubscriptionCounterService.getAvailableChats();
+			List<AvailableChatDTO> availableChats = chatSubscriptionCounterService.getAvailableChats();
 			
 			if (!availableChats.isEmpty()) {
-				return new ChosenChat(availableChats.get(0).url() + "/b");
+				return new ChosenChatDTO(availableChats.get(0).url() + "/b");
 			} else {
-				return new ChosenChat(chatUrlTemplate + "/a");
+				return new ChosenChatDTO(chatUrlTemplate + "/a");
 			}
 		} else {
 			System.out.println("Vai conversar com robô!");
 			
-			return new ChosenChat(chatUrlTemplate + "/bot");
+			return new ChosenChatDTO(chatUrlTemplate + "/bot");
 		}
 	}
 

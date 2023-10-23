@@ -6,8 +6,10 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
-import com.raphaelrighetti.binarybluff.chat.models.records.Message;
+import com.raphaelrighetti.binarybluff.chat.dto.MessageDTO;
 import com.raphaelrighetti.binarybluff.chat.services.SessionSubscriptionsService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class UserChatController {
@@ -19,7 +21,7 @@ public class UserChatController {
 	private SessionSubscriptionsService sessionSubscriptionsService;
 	
 	@MessageMapping("/message")
-	public Message sendMessage(Message message, StompHeaderAccessor accessor) {
+	public MessageDTO sendMessage(@Valid MessageDTO message, StompHeaderAccessor accessor) {
 		String chat = 
 				sessionSubscriptionsService.getSubscriptions(accessor.getSessionId()).get(0);
 		

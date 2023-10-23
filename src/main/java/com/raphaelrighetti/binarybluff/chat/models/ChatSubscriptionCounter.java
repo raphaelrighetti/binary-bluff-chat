@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.raphaelrighetti.binarybluff.chat.models.records.AvailableChat;
+import com.raphaelrighetti.binarybluff.chat.dto.AvailableChatDTO;
 
 public class ChatSubscriptionCounter {
 
@@ -38,16 +38,16 @@ public class ChatSubscriptionCounter {
         return chatCounts.getOrDefault(chatRoot, 0);
     }
     
-    public List<AvailableChat> getAvailableChats() {
-    	List<AvailableChat> availableChats = new ArrayList<>();
+    public List<AvailableChatDTO> getAvailableChats() {
+    	List<AvailableChatDTO> availableChats = new ArrayList<>();
     	
     	chatCounts.forEach((chat, count) -> {
-    		AvailableChat availableChat = new AvailableChat(chat, count);
+    		AvailableChatDTO availableChat = new AvailableChatDTO(chat, count);
     		
     		availableChats.add(availableChat);
     	});
     	
-    	List<AvailableChat> sortedChats = availableChats.stream()
+    	List<AvailableChatDTO> sortedChats = availableChats.stream()
     		.filter(chat -> chat.subscriptionCount() < 2)
     		.filter(chat -> {
     			Pattern pattern = Pattern.compile("/bot");
