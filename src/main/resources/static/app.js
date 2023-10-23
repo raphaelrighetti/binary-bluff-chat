@@ -1,11 +1,11 @@
 const stompClient = new StompJs.Client({
-  brokerURL: 'ws://localhost:8080/websocket',
+  brokerURL: 'ws://localhost:8080/chat/websocket',
 });
 
 stompClient.onConnect = frame => {
   setConnected(true);
   console.log('Connected: ' + frame);
-  fetch('http://localhost:8080/rest/pick-chat', { method: 'GET' })
+  fetch('http://localhost:8080/chat/rest/pick-chat', { method: 'GET' })
     .then(res => res.json())
     .then(data => data.url)
     .then(url => {
