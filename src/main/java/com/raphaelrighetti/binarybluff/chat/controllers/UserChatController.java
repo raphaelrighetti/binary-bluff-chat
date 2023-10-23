@@ -1,4 +1,4 @@
-package com.raphaelrighetti.websocket.controllers;
+package com.raphaelrighetti.binarybluff.chat.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -6,8 +6,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
-import com.raphaelrighetti.websocket.models.records.Message;
-import com.raphaelrighetti.websocket.services.SessionSubscriptionsService;
+import com.raphaelrighetti.binarybluff.chat.models.records.Message;
+import com.raphaelrighetti.binarybluff.chat.services.SessionSubscriptionsService;
 
 @Controller
 public class UserChatController {

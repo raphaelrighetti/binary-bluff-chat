@@ -1,4 +1,4 @@
-package com.raphaelrighetti.websocket.configurations;
+package com.raphaelrighetti.binarybluff.chat.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-import com.raphaelrighetti.websocket.interceptors.MessageInterceptor;
+import com.raphaelrighetti.binarybluff.chat.interceptors.MessageInterceptor;
 
 @Configuration
 @EnableWebSocketMessageBroker

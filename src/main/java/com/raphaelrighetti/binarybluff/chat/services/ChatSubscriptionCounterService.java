@@ -1,11 +1,11 @@
-package com.raphaelrighetti.websocket.services;
+package com.raphaelrighetti.binarybluff.chat.services;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.raphaelrighetti.websocket.models.ChatSubscriptionCounter;
-import com.raphaelrighetti.websocket.models.records.AvailableChat;
+import com.raphaelrighetti.binarybluff.chat.models.ChatSubscriptionCounter;
+import com.raphaelrighetti.binarybluff.chat.models.records.AvailableChat;
 
 @Service
 public class ChatSubscriptionCounterService {

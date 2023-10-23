@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.raphaelrighetti</groupId>
-	<artifactId>websocket</artifactId>
+	<artifactId>chat</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>websocket</name>
+	<name>chat</name>
 	<description>Teste utilizando Web Socket com Spring</description>
 	<properties>
 		<java.version>17</java.version>

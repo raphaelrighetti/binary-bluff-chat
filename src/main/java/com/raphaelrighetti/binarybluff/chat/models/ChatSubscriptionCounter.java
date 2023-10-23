@@ -1,4 +1,4 @@
-package com.raphaelrighetti.websocket.models;
+package com.raphaelrighetti.binarybluff.chat.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.raphaelrighetti.websocket.models.records.AvailableChat;
+import com.raphaelrighetti.binarybluff.chat.models.records.AvailableChat;
 
 public class ChatSubscriptionCounter {
 

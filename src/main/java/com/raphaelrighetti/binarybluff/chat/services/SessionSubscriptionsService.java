@@ -1,10 +1,10 @@
-package com.raphaelrighetti.websocket.services;
+package com.raphaelrighetti.binarybluff.chat.services;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.raphaelrighetti.websocket.models.SessionSubscriptions;
+import com.raphaelrighetti.binarybluff.chat.models.SessionSubscriptions;
 
 @Service
 public class SessionSubscriptionsService {

@@ -1,4 +1,4 @@
-package com.raphaelrighetti.websocket.models;
+package com.raphaelrighetti.binarybluff.chat.models;
 
 import java.util.ArrayList;
 import java.util.List;

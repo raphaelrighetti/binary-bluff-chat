@@ -1,4 +1,4 @@
-package com.raphaelrighetti.websocket.interceptors;
+package com.raphaelrighetti.binarybluff.chat.interceptors;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.stereotype.Component;
 
-import com.raphaelrighetti.websocket.services.ChatSubscriptionCounterService;
-import com.raphaelrighetti.websocket.services.SessionSubscriptionsService;
+import com.raphaelrighetti.binarybluff.chat.services.ChatSubscriptionCounterService;
+import com.raphaelrighetti.binarybluff.chat.services.SessionSubscriptionsService;
 
 @Component
 public class MessageInterceptor implements ChannelInterceptor {

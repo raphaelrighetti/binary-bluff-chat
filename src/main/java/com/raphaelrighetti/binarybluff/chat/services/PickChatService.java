@@ -1,4 +1,4 @@
-package com.raphaelrighetti.websocket.services;
+package com.raphaelrighetti.binarybluff.chat.services;
 
 import java.util.List;
 import java.util.Random;
@@ -7,8 +7,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.raphaelrighetti.websocket.models.records.AvailableChat;
-import com.raphaelrighetti.websocket.models.records.ChosenChat;
+import com.raphaelrighetti.binarybluff.chat.models.records.AvailableChat;
+import com.raphaelrighetti.binarybluff.chat.models.records.ChosenChat;
 
 @Service
 public class PickChatService {
